@@ -1,0 +1,15 @@
+<% content_for(:heading) { @user.username } %> 
+
+	
+
+<div id= "profile">
+	<h1> <%= @user.username %> </h1>
+	<%= image_tag("profile_pic.png", :alt => "profile picture") %>
+
+	</br><b>Email:</b> <%= @user.email %> </br>
+	<b>Goals Completed: </b>
+</div>
+
+
+
+

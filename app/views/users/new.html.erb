@@ -1,0 +1,35 @@
+<% content_for :heading do %>
+  Create an account
+<% end %>
+
+<% content_for :error do %>
+  <% if @user.errors.any? %>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+<% end %>
+
+<%= form_for @user, :url => differentiate_path(:users_path) do |f| %>
+  <fieldset>
+    <div data-role="fieldcontain">
+      <%= f.label :email %>
+      <%= f.text_field :email, :placeholder => "john.doe@example.com" %>
+    </div>
+    <div data-role="fieldcontain">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <div data-role="fieldcontain">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <div data-role="fieldcontain">
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+    </div>
+    <%= f.submit %>
+  </fieldset>
+<% end %>

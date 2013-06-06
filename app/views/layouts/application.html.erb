@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GetGoals Prototype</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "http://code.jquery.com/mobile/latest/jquery.mobile.min.css", :media => "all" %>
+  <%= javascript_include_tag "http://code.jquery.com/mobile/latest/jquery.mobile.min.js" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div data-role="page" data-dom-cache="true">
+    <div data-role="header">
+      <h1><%= yield :heading %></h1>
+    </div>
+
+    <div id="messages">
+      <div id="alert">
+        <% if flash[:alert] %>
+          <ul>
+            <li><%= flash[:alert] %></li>
+          </ul>
+        <% else %>
+          <%= yield :error %>
+        <% end %>
+      </div>
+      <div id="notice">
+        <% if flash[:notice] %>
+          <ul>
+            <li><%= flash[:notice] %></li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+
+    <div data-role="content">
+      <%= yield %>
+    </div>
+    <div data-role="footer" data-position="fixed">
+      <div data-role="navbar" data-position="fixed">
+        <ul>
+          <% if current_user %>
+          <li>
+             <%= link_to "Home", root_path, "data-icon" => "home" %>
+          </li>
+          <li>
+            <%= link_to "Profile", user_path(current_user), "data-icon" => "grid" %>
+          </li>
+           <li>
+            <%= link_to "New Goal", new_goal_path(current_user), "data-icon" => "plus" %>
+          </li>
+          <li>
+            <%= link_to "log out", session_path(current_user), :method => :delete, "data-icon" => "delete" %>
+          </li>
+          <% else %>
+          <li>
+             <%= link_to "Home", root_path, "data-icon" => "home" %>
+          </li>
+          <li>
+            <%= link_to "log in", new_session_path, "data-icon" => "check" %>
+          </li>
+          <li>
+            <%= link_to "sign up", new_user_path, "data-icon" => "plus"%>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    
+  </div>
+</body>
+</html>

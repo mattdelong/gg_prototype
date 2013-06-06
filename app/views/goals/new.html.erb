@@ -1,0 +1,33 @@
+
+<% content_for :heading do %>
+  New Goal
+<% end %>
+
+<% content_for :error do %>
+  <% if @goal.errors.any? %>
+      <ul>
+        <% @goal.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+<% end %>
+
+<%= form_for @goal, :url => differentiate_path(:goals_path) do |f| %>
+  <fieldset>
+    <div data-role="fieldcontain">
+      <%= f.label :title %>
+      <%= f.text_field :title, :placeholder => "What is your goal?" %>
+    </div>
+    <div data-role="fieldcontain">
+      <%= f.label :start_date %>
+      <%= f.text_field :start_date %>
+    </div>
+    <div data-role="fieldcontain">
+      <%= f.label :end_date %>
+      <%= f.text_field :end_date %>
+    </div>
+      
+    <%= f.submit "Continue" %>
+  </fieldset>
+<% end %>

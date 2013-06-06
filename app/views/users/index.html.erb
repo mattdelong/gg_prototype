@@ -1,0 +1,12 @@
+<% content_for :heading do %>
+  All users
+<% end %>
+
+<ul data-role="listview">
+  <% @users.each do |user| %>
+    
+    <li>
+      <%= link_to user.email, current_user == user ? user_path(user) : user_path(user) %>
+    </li>
+  <% end %>
+</ul>
